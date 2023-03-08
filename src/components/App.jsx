@@ -1,18 +1,22 @@
 import Statistics from './StatisticsInfo/Statistics';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FeedbackOptions from './Feedback/FeedbackOptions';
 import Section from './Section/Section';
 import { AppSection } from './App.styled';
 const App = () => {
-  // state = {
-  //   good: 0,
-  //   neutral: 0,
-  //   bad: 0,
-  // };
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-const
+  const onLeaveFeedbackGood = good => {
+    setGood(good + 1);
+  };
+  const onLeaveFeedbackNeutral = neutral => {
+    setNeutral(neutral + 1);
+  };
+  const onLeaveFeedbackBad = bad => {
+    setBad(bad + 1);
+  };
+
   // addComment = option => {
   //   this.setState(PrevState => {
   //     return {
@@ -21,12 +25,12 @@ const
   //   });
   // };
 
-  // countTotalFeedback = () => {
-  //   bad + good + neutral;
-  // };
-  // countPositiveFeedbackPercentage = () => {
-  //   return Math.round((good / countTotalFeedback()) * 100);
-  // };
+  const countTotalFeedback = () => {
+    return bad + good + neutral;
+  };
+  const countPositiveFeedbackPercentage = () => {
+    return Math.round((good / countTotalFeedback()) * 100);
+  };
 
   return (
     <AppSection>
@@ -35,14 +39,16 @@ const
           good={good}
           bad={bad}
           neutral={neutral}
-          // options={Object.keys(state)}
-          // onLeaveFeedback={addComment}
+          onLeaveFeedbackGood={onLeaveFeedbackGood}
+          onLeaveFeedbackNeutral={onLeaveFeedbackNeutral}
+          onLeaveFeedbackBad={onLeaveFeedbackBad}
         />
         <Statistics
           good={good}
           neutral={neutral}
           bad={bad}
-          // positivePercentage={countPositiveFeedbackPercentage}
+          total={countTotalFeedback}
+          positivePercentage={countPositiveFeedbackPercentage}
         />
       </Section>
     </AppSection>

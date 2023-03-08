@@ -1,30 +1,24 @@
 import Notification from 'components/NotificationMessage/Notification';
 import PropTypes from 'prop-types';
 import { StatisticsParagraph, StatisticsHeader } from './Statistics.styled';
-const Statistics = ({ good, neutral, bad }) => {
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   return (
     <div>
-      <StatisticsHeader>Statistics</StatisticsHeader>
-      <StatisticsParagraph>Good:{good}</StatisticsParagraph>
-      <StatisticsParagraph>Neutral:{neutral}</StatisticsParagraph>
-      <StatisticsParagraph>Bad:{bad}</StatisticsParagraph>
+      {!total() ? (
+        <Notification message="There is no feedback" />
+      ) : (
+        <>
+          <StatisticsHeader>Statistics</StatisticsHeader>
+          <StatisticsParagraph>Good:{good}</StatisticsParagraph>
+          <StatisticsParagraph>Neutral:{neutral}</StatisticsParagraph>
+          <StatisticsParagraph>Bad:{bad}</StatisticsParagraph>
+          <StatisticsParagraph>Total:{total()}</StatisticsParagraph>
+          <StatisticsParagraph>
+            Positive feedback:{positivePercentage()}%
+          </StatisticsParagraph>
+        </>
+      )}
     </div>
-    // <div>
-    //   {!total() ? (
-    //     <Notification message="There is no feedback" />
-    //   ) : (
-    //     <>
-    //       <StatisticsHeader>Statistics</StatisticsHeader>
-    //       <StatisticsParagraph>Good:{good}</StatisticsParagraph>
-    //       <StatisticsParagraph>Neutral:{neutral}</StatisticsParagraph>
-    //       <StatisticsParagraph>Bad:{bad}</StatisticsParagraph>
-    //       {/* <StatisticsParagraph>Total:{total()}</StatisticsParagraph> */}
-    //       {/* <StatisticsParagraph>
-    //         Positive feedback:{positivePercentage()}%
-    //       </StatisticsParagraph> */}
-    //     </>
-    //   )}
-    // </div>
   );
 };
 export default Statistics;
