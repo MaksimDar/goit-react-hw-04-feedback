@@ -11,16 +11,16 @@ const FeedbackOptions = ({
   return (
     <div>
       <FeedbackButtons type="button" onClick={() => onLeaveFeedbackGood(good)}>
-        {good}
+        good
       </FeedbackButtons>
       <FeedbackButtons
         type="button"
         onClick={() => onLeaveFeedbackNeutral(neutral)}
       >
-        {neutral}
+        neutral
       </FeedbackButtons>
       <FeedbackButtons type="button" onClick={() => onLeaveFeedbackBad(bad)}>
-        {bad}
+        bad
       </FeedbackButtons>
     </div>
   );
